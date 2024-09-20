@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers List</title>
+    <link rel="stylesheet" href="css/customers.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="container">
+    <div class="header-buttons">
+        <a href="/admin" class="btn btn-info">Products</a>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Our Customers:</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Phone</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.getId()}"></td>
+            <td th:text="${customer.getPhone()}"></td>
+            <td th:text="${customer.getUsername()}"></td>
+            <td th:text="${customer.getEmail()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

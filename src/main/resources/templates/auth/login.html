@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация и Вход</title>
+    <link rel="stylesheet" href="css/enterstyle.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="login-container">
+    <h2>Вход или Регистрация</h2>
+    <form th:action="@{/login}" th:method="POST">
+        <div class="input-group">
+            <label for="username">Логин</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Вход</button>
+            <a href="/reg" class="btn btn-secondary">Регистрация</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+

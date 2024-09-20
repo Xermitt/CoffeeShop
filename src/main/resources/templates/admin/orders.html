@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders List</title>
+    <link rel="stylesheet" href="css/orders.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="container">
+    <div class="header-buttons">
+        <a href="/admin/products" class="btn btn-info">Products</a>
+        <a href="/admin/customers" class="btn btn-info">Customers</a>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Orders:</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Products</th>
+        </tr>
+        </thead>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.getId()}"></td>
+            <td th:text="${order.getUser()}"></td>
+            <td th:text="${order.getStatus()}"></td>
+            <td th:text="${order.getTotal()}"></td>
+            <td th:text="${order.getOrderItems()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

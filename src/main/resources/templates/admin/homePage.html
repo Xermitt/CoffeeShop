@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - EveryDayCoffee</title>
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{css/style.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .product-image {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<header class="container">
+    <div class="header-buttons">
+        <a th:href="@{/admin/customers}" class="btn btn-info">Customers</a>
+        <a href="/admin/products/create" class="btn btn-info">Create</a>
+        <a href="/logout" class="btn btn-info">Escape</a>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Our Products:</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getCount()}"></td>
+        <td th:text="${product.getDescription()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td th:text="${product.getCategory()}"></td>
+        <td>
+            <img th:src="@{${product.getImage()}}" alt="Product Image" class="product-image">
+        </td>
+        <td>
+            <a th:href="@{admin/products/update/{id}(id=${product.getId()})}" class="btn btn-primary">Update</a>
+            <form th:action="@{admin/products/delete/{id}(id=${product.getId})}" th:method="POST">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

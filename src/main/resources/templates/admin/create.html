@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en" xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <meta charset="UTF-8">
+        <title>Update Product - EveryDayCoffee</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="text-center my-4">
+    <h1>Create Product</h1>
+</header>
+
+<div class="container">
+    <form th:action="@{/admin/products/create}" th:object="${product}" th:method="POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" class="form-control" required>
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></div>
+        </div>
+
+        <div class="form-group">
+            <label for="count">Count:</label>
+            <input type="number" id="count" name="count" th:field="*{count}" class="form-control" required>
+            <div style="color: red" th:if="${#fields.hasErrors('count')}" th:errors="*{count}" ></div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" th:field="*{description}" class="form-control" required></textarea>
+            <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}" ></div>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" id="price" name="price" th:field="*{price}" class="form-control" required>
+            <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" ></div>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" th:field="*{category}" class="form-control" required>
+            <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}" ></div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="image" th:field="*{image}" name="image" class="form-control-file">
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Update">
+        <a th:href="@{/admin}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
