@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.daitbegov.CoffeeShop.models.Product;
-import ru.daitbegov.CoffeeShop.models.User;
+import ru.daitbegov.CoffeeShop.repository.OrderRepository;
 import ru.daitbegov.CoffeeShop.repository.ProductRepository;
 import ru.daitbegov.CoffeeShop.repository.UserRepository;
 import ru.daitbegov.CoffeeShop.service.ProductService;
@@ -21,12 +21,14 @@ public class AdminController {
     private final UserValidator userValidator;
     private final ProductService productService;
     private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
 
-    public AdminController(ProductRepository productRepository, UserValidator userValidator, ProductService productService, UserRepository userRepository) {
+    public AdminController(ProductRepository productRepository, UserValidator userValidator, ProductService productService, UserRepository userRepository, OrderRepository orderRepository) {
         this.productRepository = productRepository;
         this.userValidator = userValidator;
         this.productService = productService;
         this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping("")
@@ -72,5 +74,11 @@ public class AdminController {
     public String showCustomers(Model model) {
         model.addAttribute("customers",userRepository.findAll());
         return "/admin/customers";
+    }
+
+    @GetMapping("/customers/{id}")
+    public String showCustomers(Model model, @PathVariable int id) {
+        model.addAttribute("orders",orderRepository.getOrOrderByUserId(userRepository.getUserById(id).get()));
+        return "/admin/customers-orders";
     }
 }

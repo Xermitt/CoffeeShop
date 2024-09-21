@@ -16,9 +16,15 @@ public class ProductService {
     public void delete(int id){
         productRepository.deleteById(id);
     }
-
+    public Product getProductById(Integer id) {
+        return productRepository.getById(id);
+    }
     public void updateById(int id, Product product){
         product.setId(id);
         productRepository.save(product);
+    }
+
+    public void decreaseProductCount(Integer productId, Integer amount){
+        productRepository.decreaseProductCount(productId, amount);
     }
 }

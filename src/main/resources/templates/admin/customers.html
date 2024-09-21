@@ -22,6 +22,7 @@
             <th>Phone</th>
             <th>Username</th>
             <th>Email</th>
+            <th>Orders</th>
         </tr>
         </thead>
         </thead>
@@ -31,6 +32,11 @@
             <td th:text="${customer.getPhone()}"></td>
             <td th:text="${customer.getUsername()}"></td>
             <td th:text="${customer.getEmail()}"></td>
+            <td>
+                <div class="header-buttons">
+                    <a th:href="@{/admin/customers/{id}(id=${customer.getId()})}" class="btn btn-info">Orders</a>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>

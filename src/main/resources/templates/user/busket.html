@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - EveryDayCoffee</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .product-image {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<header class="container">
+    <div class="header-buttons">
+        <a href="/logout" class="btn btn-info">Escape</a>
+        <a th:href="@{/user}" class="btn btn-info">Home</a>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Products:</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Count</th>
+            <th>Price</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cartItems}">
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getProduct().getName()}"></td>
+            <td th:text="${item.getProduct().getDescription()}"></td>
+            <td th:text="${item.getProduct().getPrice()}"></td>
+            <td th:text="${item.getProduct().getCategory()}"></td>
+            <td>
+                <img th:src="@{${item.getProduct().getImage()}}" alt="Product Image" class="product-image">
+            </td>
+            <td th:text="${item.getQuantity()}"></td>
+            <td th:text="${item.getProduct().getPrice()*item.getQuantity()}"></td>
+            <td>
+                <form th:action="@{/user/busket/{id}(id=${item.getProduct().getId()})}" th:method="POST">
+                    <input type="submit" value="Delete from basket">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:text="'Busket: ' + ${sum}">
+    </p>
+    <div th:if="${sum > 1}" class="header-buttons">
+        <form th:action="@{/user/busket}" th:method="POST">
+            <input type="submit" value="Buy">
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
